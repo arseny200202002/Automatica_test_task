@@ -1,0 +1,39 @@
+services:
+  api:
+    container_name: api
+    build: ./src
+    #command: python manage.py runserver 0.0.0.0:${DJANGO_PORT}
+    volumes:
+      - ./src:/usr/src
+    ports:
+      - ${DJANGO_PORT}:${DJANGO_PORT}
+    env_file:
+      - .env
+    networks:
+      - pg_network
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:12.0-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    networks:
+      - pg_network
+    volumes:
+      - pg_vol:/var/lib/postgresql/data/
+
+networks:
+  pg_network:
+    driver: bridge
+  
+
+volumes:
+  pg_vol:  
+

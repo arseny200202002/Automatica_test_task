@@ -1,0 +1,1 @@
+[{"model": "api.shop", "pk": 1, "fields": {"name": "Садовый гном", "employee": 1}}, {"model": "api.shop", "pk": 2, "fields": {"name": "Три лапы", "employee": 2}}, {"model": "api.shop", "pk": 3, "fields": {"name": "Рога и копыта", "employee": 3}}, {"model": "api.shop", "pk": 4, "fields": {"name": "Кости и хрящи", "employee": 3}}]

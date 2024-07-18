@@ -1,0 +1,1 @@
+[{"model": "api.employee", "pk": 1, "fields": {"name": "Александр", "phone_number": "+79178889035"}}, {"model": "api.employee", "pk": 2, "fields": {"name": "Иван", "phone_number": "+79857728183"}}, {"model": "api.employee", "pk": 3, "fields": {"name": "Игорь", "phone_number": "+79997718361"}}]
