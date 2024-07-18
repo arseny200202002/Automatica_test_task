@@ -5,11 +5,11 @@ from .models import Employee
 
 class PhoneAuthentication(BaseAuthentication): 
     def authenticate(self, request): 
-        phone_number = request.data.get('phone_number') 
+        phone_number = request.META.get('HTTP_PHONE_NUMBER') 
         if phone_number: 
             try: 
                 user = Employee.objects.get(phone_number=phone_number) 
-                return user 
+                return (user, None)
             except Employee.DoesNotExist: 
                 raise AuthenticationFailed('Пользователь с указанным номером телефона не найден') 
             return None

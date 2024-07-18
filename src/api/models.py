@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 class Employee(models.Model):
     name = models.CharField(
@@ -12,6 +13,12 @@ class Employee(models.Model):
         unique=True, 
         verbose_name=_("номер телефона")
     )
+
+    def __str__(self):
+        return self.name
+    
+    def is_authenticated(self):
+        return True
 
     class Meta:
         db_table = "employee"
@@ -31,6 +38,9 @@ class Shop(models.Model):
         on_delete=models.CASCADE,
         related_name='shops'
     )
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = "shop"
@@ -59,6 +69,9 @@ class Visit(models.Model):
         on_delete=models.CASCADE,
         related_name='visits'
     )
+
+    def __str__(self):
+        return f'[{self.shop.name}] {self.employee.name}'
 
 
     class Meta:

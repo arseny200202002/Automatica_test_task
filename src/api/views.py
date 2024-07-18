@@ -58,7 +58,7 @@ class CreateVisitApiView(APIView):
         serializer = CreateVisitSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
-        shop = get_object_or_404(Shop, pk=serializer.validated_data.pop('shop_id'))
+        shop = get_object_or_404(Shop, pk=serializer.validated_data.pop('shop_id'), employee=employee)
         visit = Visit(shop=shop, employee=employee, **serializer.validated_data)
         visit.save()
         return Response(
